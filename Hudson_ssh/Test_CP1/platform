@@ -1,0 +1,37 @@
+server {
+    listen 8080; ## listen for ipv4; this line is default and implied
+    #listen [::]:80 default ipv6only=on; ## listen for ipv6
+
+    # Make site accessible from http://localhost/
+    server_name localhost;
+
+    location / {
+        proxy_pass http://127.0.0.1:8085;
+        proxy_redirect http://127.0.0.1:8085/ http://107.21.31.71:8083/;
+        ### for amazon: proxy_redirect http://127.0.0.1:8085/ http://107.21.31.71:8083/;
+    }
+    location /res {
+        proxy_pass http://127.0.0.1:8085;
+        proxy_redirect http://127.0.0.1:8085/ http://107.21.31.71:8083/;
+        ### for amazon: proxy_redirect http://127.0.0.1:8085/ http://107.21.31.71:8083/;
+    }
+    location /protobufrequest {
+        proxy_pass http://127.0.0.1:8090;
+        proxy_redirect http://127.0.0.1:8090/ http://107.21.31.71:8083/;
+        ### for amazon: proxy_redirect http://127.0.0.1:8090/ http://107.21.31.71:8083/;
+    }
+    location /Comet {
+        proxy_pass http://127.0.0.1:8090;
+        proxy_buffering off;
+        proxy_read_timeout 600;
+    }
+    location /loadcontent {
+        proxy_pass http://127.0.0.1:8090;
+        proxy_redirect http://127.0.0.1:8090/ http://107.21.31.71:8083/;
+        ### for amazon: proxy_redirect http://127.0.0.1:8090/ http://107.21.31.71:8083/;
+    }
+    location /gadgets/images {
+	proxy_pass http://127.0.0.1:8090;
+	proxy_buffering off;
+    }
+}

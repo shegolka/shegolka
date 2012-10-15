@@ -1,0 +1,8 @@
+11:23:27,642  INFO main PlatformProperties:getProperty:56 - Rendering platform property "content.load.direction" is set to default value : loadcontent
+11:23:27,644  INFO main PlatformComponentsInitializer:init:30 - Dao module is initialized 
+11:23:27,645  INFO main PlatformComponentsInitializer:init:32 - Memored Cache module is initialized 
+11:23:27,645  WARN main PlatformProperties:getProperty:46 - Rendering platform property "jms.server.url" have NULL value
+11:23:27,652  INFO ThreadUtility#2 DeleteTemporaryUsersTask:work:49 - Deletion of the temporary users task started; hour = 11
+11:23:27,731  INFO main PlatformServer:run:50 - Netty server is started in address : [id: 0x0000e312, /127.0.0.1:8090]
+11:23:29,651  INFO ThreadUtility#4 RemoveWorkoutListenersTask:work:30 - Remove Workout Listeners Task started for subscriber name = historical
+11:23:29,652  INFO ThreadUtility#4 RemoveWorkoutListenersTask:work:43 - Remove Workout Listeners Task completed for subscriber name = historical

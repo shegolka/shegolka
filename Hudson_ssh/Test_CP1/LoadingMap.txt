@@ -1,0 +1,10 @@
+option batch abort
+option confirm off
+open scp://ubuntu@10.0.1.222:22 -privatekey=keyCP.ppk
+call sudo chmod -f 777 /var/lib/tomcat6/webapps/gad/MapGadget/
+call sudo rm -r -f /var/lib/tomcat6/webapps/gad/MapGadget/
+put D:\Project\Autobuilder\Hudzone\DataFiles\MapGadget.zip /var/lib/tomcat6/webapps/gad/
+call sudo unzip /var/lib/tomcat6/webapps/gad/MapGadget.zip -d /var/lib/tomcat6/webapps/gad/
+call sudo rm -r -f /var/lib/tomcat6/webapps/gad/MapGadget.zip
+call sudo service tomcat6 start
+exit

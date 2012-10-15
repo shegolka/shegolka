@@ -1,0 +1,1 @@
+winscp.com /script=LoadingTest.txt /parameter 10.0.1.222 22 keyCP.ppk

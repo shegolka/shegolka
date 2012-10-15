@@ -1,0 +1,34 @@
+option batch abort
+option confirm off
+open scp://ubuntu@10.0.1.220:22 -privatekey=keyRP.ppk
+##echo ===========================RP========================================== 
+##echo =====Stop Tomcat=====
+call sudo chmod 777 /var/lib/tomcat6/ 
+call sudo service tomcat6 stop
+##echo =====Stop NgInx=====
+call sudo service nginx stop
+##echo =====Clear Logs conf=====
+call sudo rm -r -f /var/lib/tomcat6/conf/Catalina/localhost
+call sudo rm -r -f /var/lib/tomcat6/work/Catalina/localhost
+call sudo chmod -f 777 /var/lib/tomcat6/
+call sudo chmod -f 777 /var/lib/tomcat6/webapps/
+call sudo rm -r -f /var/lib/tomcat6/webapps/ROOT.war
+call sudo rm -r -f /var/lib/tomcat6/webapps/ROOT
+call sudo rm -r -f /var/lib/tomcat6/logs/*
+put D:\Project\Autobuilder\ExternalProject\RenderingPlatform\target\ROOT.war /var/lib/tomcat6/webapps/
+call sudo service tomcat6 start
+##echo =====Stop Tomcat=====
+call sudo service tomcat6 stop
+##echo =====Downloading options root=====
+call sudo chmod -f 777 /var/lib/tomcat6/webapps/ROOT/config/
+call sudo rm -r -f /var/lib/tomcat6/webapps/ROOT/config/options.properties
+put D:\Project\Autobuilder\Hudzone\DataFiles\Test_RP1\options.properties /var/lib/tomcat6/webapps/ROOT/config/
+call sudo rm -r -f /var/lib/tomcat6/webapps/gad
+put D:\Project\Autobuilder\Hudzone\DataFiles\gad.zip /var/lib/tomcat6/webapps/
+call sudo chmod -f 777 /var/lib/tomcat6/webapps/gad.zip
+call sudo unzip /var/lib/tomcat6/webapps/gad.zip  -d /var/lib/tomcat6/webapps/
+call sudo rm -r -f /var/lib/tomcat6/webapps/gad.zip
+call sudo chmod -f 777 /var/lib/tomcat6/webapps/gad
+call sudo service nginx start
+call sudo service tomcat6 start
+exit

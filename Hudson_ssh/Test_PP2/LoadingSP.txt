@@ -1,0 +1,42 @@
+option batch abort
+option confirm off
+open scp://ubuntu@10.0.1.224:22 -privatekey=keyPP2.ppk
+call screen -S HQ -X quit
+call screen -S BP -X quit
+call screen -S PP -X quit
+call sudo chmod -f 777 /home/ubuntu/ServerPart/
+call sudo rm -r -f /home/ubuntu/ServerPart/
+call sudo mkdir /home/ubuntu/ServerPart/
+call sudo chmod -f 777 /home/ubuntu/ServerPart/
+put D:\Project\Autobuilder\Hudzone\DataFiles\HQ.zip /home/ubuntu/ServerPart/
+put D:\Project\Autobuilder\Hudzone\DataFiles\PP.zip /home/ubuntu/ServerPart/
+put D:\Project\Autobuilder\Hudzone\DataFiles\BP.zip /home/ubuntu/ServerPart/
+call sudo unzip /home/ubuntu/ServerPart/HQ.zip  -d /home/ubuntu/ServerPart/
+call sudo unzip /home/ubuntu/ServerPart/PP.zip  -d /home/ubuntu/ServerPart/
+call sudo unzip /home/ubuntu/ServerPart/BP.zip  -d /home/ubuntu/ServerPart/
+call sudo chmod -f 777 /home/ubuntu/ServerPart/BP/
+call sudo chmod -f 777 /home/ubuntu/ServerPart/PP/
+call sudo chmod -f 777 /home/ubuntu/ServerPart/HQ/
+call sudo chmod -f 777 /home/ubuntu/ServerPart/BP/config/
+call sudo chmod -f 777 /home/ubuntu/ServerPart/PP/config/
+call sudo chmod -f 777 /home/ubuntu/ServerPart/HQ/config/
+call sudo rm -r -f /home/ubuntu/ServerPart/BP/config/blssettings.properties
+put D:\Project\Autobuilder\Hudzone\DataFiles\Test_PP2\blssettings.properties /home/ubuntu/ServerPart/BP/config/
+call sudo rm -r -f /home/ubuntu/ServerPart/PP/config/blssettings.properties
+call sudo rm -r -f /home/ubuntu/ServerPart/PP/config/datastoragesettings.properties
+call sudo rm -r -f /home/ubuntu/ServerPart/PP/config/jmssettings.properties
+put D:\Project\Autobuilder\Hudzone\DataFiles\Test_PP2\blssettings.properties /home/ubuntu/ServerPart/PP/config/
+put D:\Project\Autobuilder\Hudzone\DataFiles\Test_PP2\datastoragesettings.properties /home/ubuntu/ServerPart/PP/config/
+put D:\Project\Autobuilder\Hudzone\DataFiles\Test_PP2\jmssettings.properties /home/ubuntu/ServerPart/PP/config/
+put D:\Project\Autobuilder\Hudzone\DataFiles\Test_PP2\AwsStorages.properties /home/ubuntu/ServerPart/PP/config/
+call sudo chmod -f 777 /home/ubuntu/ServerPart/HQ
+call screen -S HQ -X quit
+call screen -S BP -X quit
+call screen -S PP -X quit
+call cd /home/ubuntu/ServerPart/HQ/
+call screen -dmS HQ java -jar /home/ubuntu/ServerPart/HQ/hq-core-server-*.jar
+call cd /home/ubuntu/ServerPart/BP/
+call screen -dmS BP java -jar BasePlatform-*.jar
+call cd /home/ubuntu/ServerPart/PP/
+call screen -dmS PP java -jar /home/ubuntu/ServerPart/PP/ProcessingPlatform-*.jar
+exit
